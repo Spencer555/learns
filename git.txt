@@ -1,0 +1,61 @@
+git init - initialize local git repo 
+git add <file> - add files to index
+git add *.html - add all html files to staging area
+git add * - add all files to staging area
+git rm --cached <file> - remove files from staging area
+git status - check status of working tree or what is in staging area
+git commit - commit changes in index 
+git commit -m 'comment of changes made' - commit changes in index and skip editing stage
+git push - push to remote repo 
+git pull - pull from repo 
+git clone - clone repo into a new directory
+git config --global user.name 'spencer lewis'
+git config --global user.email 'lewisspencer555@gmail.com'
+
+git config --global core.editor "code --wait" - set vs code as defualt editor 
+
+
+git config --global -e - this opens our defualt editor to eidt all our global settings
+
+.gitignore - a file created to tell git which files to ignore 
+
+e.g. to ignore log.txt we type filename and extension in .gitignore
+log.txt
+
+
+create a branch and work in it and commit it but is is still not going to be commited to the main branch
+
+git branch branchname - create a branch
+
+git checkout branchname - switch to a branch name
+
+
+ur main branch is called master  
+
+to merge branches this is done while in the master 
+git merge branchname - this opens a  editor in terminal type ur reason for commit here to leave this editor 
+escape :wq press enter
+
+
+to add a remote repo create it on git hub 
+then 
+git remote
+
+git remote add origin link-to-repo
+
+to see repo added 
+git remote 
+
+
+git  push -u origin master
+
+
+on windows end of lines are marked with \r\n - carriage return 
+
+on mac os and linux end of lines are marked \n - line feed 
+
+to fix this on windows 
+git config --global core.autocrlf true 
+
+to fix this on  mac and linux 
+git config --global core.autocrlf input

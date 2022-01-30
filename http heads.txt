@@ -1,0 +1,44 @@
+http headers 
+
+
+there are 4 diff header are used :
+
+1 general header - date when the response was created, connection: close
+
+2 response header(in response message) - server: Apache/1.3.27 , Accept-Ranges:bytes
+
+3 entity header 
+content-type:text/html 
+content-length:200
+last-modified: date
+
+
+4 blank line - a blank line 
+
+5 message body - the html 
+
+
+header can be one or more header lines 
+
+
+e.g 
+status line - http/1.1 200 OK 
+header lines - 
+server 
+last-modified
+etag 
+accept-ranges 
+content-length 
+keep alive 
+connection  
+
+message body - message of body
+
+
+
+Authorization 
+Authorization: <type> <credential> 
+<type>: type(scheme) of authentication, ex: Basic, Bearer 
+this type is based on the auth method u used
+
+

@@ -1,0 +1,63 @@
+caching headers 
+
+expires - absolute expiring date with which it expires cant be more than a year clocks have to be in a sync
+
+
+pragma - out dated pre http 1 headers the only value is  is - no-cache 
+
+to prevent caching
+cache-control should be preferred 
+outdated
+
+
+content-control - preferred caching header values include 
+
+cache-control : no-store - content is not to be cached
+
+
+cache-control : no-cache - content can be cached but must require validation 
+
+cache-control : max-age=3600, public - content can be cached for the given num of secs  and public means it can be cached anywhere for 60 mins and private means cached on client for 60 mins
+
+cache-control : s-max-age=3600, public - content can be cached  at given places for the no of secs shared caching. in cases where both s-max and max age are present it would take the max age for the client side caching and the s-max for the shared caching 
+
+
+cache-control : max-age=600, must-revalidate -if there is a network issues of problem the client would serve the cache content even if stale this prevent that and revalidate content b4 serving  
+
+cache-control : max-age=600, proxy-revalidate -if there is a network issues of problem the client would serve the cache content even if stale but the proxy cant because proxy must revalidate
+
+u can mix the values to achieve diff caching behaviors 
+
+cache-control: max-age=3600, s-max-age=600, public, must-revalidate
+
+validatiors 
+etag - entity tags a unique identifier associated to it
+
+if-none-match - makes call to the server if cache expires it matches with the etag with the resource if not it gets a new etag and resource
+
+if it does match server responds with 304 means not modified
+
+last-modified - when it was last modified indicating the date and time 
+
+if-modified-since - if content gets stale client makes request with the last modified date it returns 304 not modified or response
+
+
+
+if both the etag and last modified are present both params will the sent in the validation request using if-none-match and if-modified-since 
+
+
+if none are present in response etag and last modified the cache is not refreshed
+
+what should be ur caching strategy
+
+light caching e.g. html used on mainly html it makes sure the client get the latest html when updated and returns the old one when the html is not changed
+ 
+cache-control: private, no-cache
+
+
+aggressive caching e.g css javascript images 
+cache-control: public, max-age=31556926
+
+
+debugging the caching headers 
+curl -I http://some-url.com

@@ -1,0 +1,84 @@
+first find the slow component with react dev tool
+
+check for components that rerenders so many times 
+check for values that are recomputing and make them compute only once if the dont need to change
+ur react.fragment instead of divs in parent tags
+use pure components    
+
+
+e.g 
+
+import React, {PureComponent} from 'react'
+
+export class MyComponent extends PureComponent{
+    render (){
+        return (
+            <React.Fragment onClick={e => this.buttonClick}>
+               My Button
+            </React.Fragment>
+        )
+    }
+
+    buttonClick = e => {
+        
+    }
+}
+
+memoization is an optimization technique used to speed up computer programs by storing the results of expensive calc and returning the cached results when the same inputs occur again
+
+
+e.g. 
+
+const calculation = useMemo(() => function, [array containing the dependencies the function depend on]) 
+
+
+three ways a component rerenderes 
+when the parent rerenders 
+
+to memoization a function 
+it must be pure 
+it cant have side effects
+if the input are the same it returns the cached version if not it rerenders and recalculate
+
+e.g. 
+
+const Child = memo(props => {
+    console.log('this is this')
+    return (
+        <div>
+            child
+        </div>
+    )
+})
+
+or wrapping the export 
+export defualt memo(Child)
+
+
+
+use callback with a function 
+const updatecounterfromChild = useCallback(() => setCounter(count + 1), [counter]) use callback is same as memo but used for functions that would be passed down or has a call back 
+
+let childNumber = 0;
+for (let1=0; < 500_000_000; i++){
+    childNumber++
+}
+
+const childNumber = useMemo(()=>{
+    let output =0;
+    for (let1=0; < 500_000_000; i++){
+        output++
+    
+}
+     return  output
+)
+
+
+
+using suspense and lazy for async process where obj req must load b4 
+but be carefull using suspense cause it waits for everyting to load b4 
+wrap only around async obj
+
+import React, {Suspense, lazy} from 'react'
+
+const sidebar = lazy(()  => import('./components/Sidebar'))
